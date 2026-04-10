@@ -87,6 +87,14 @@
       font-weight: 900;
     }
 
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .nav {
       display: flex;
       align-items: center;
@@ -342,6 +350,14 @@
       font-size: 14px;
     }
 
+    .video-note a {
+      text-decoration: none;
+    }
+
+    .video-note a:hover {
+      text-decoration: underline;
+    }
+
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -504,6 +520,7 @@
         padding: 10px 0;
       }
 
+      .header-right,
       .nav {
         justify-content: flex-start;
       }
@@ -528,6 +545,24 @@
       .hero-quote { font-size: 18px; }
       .nav { display: none; }
     }
+
+    .lang-toggle {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .18s ease;
+      min-width: 64px;
+    }
+
+    .lang-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(36, 41, 47, 0.08);
+    }
   </style>
 </head>
 <body>
@@ -537,13 +572,16 @@
         <span class="brand-badge">SEL</span>
         <span>社會情緒學習力家長筆記</span>
       </a>
-      <nav class="nav" aria-label="頁面導覽">
-        <a href="#video">影片</a>
-        <a href="#toc">目錄</a>
-        <a href="#speaker">講者重點</a>
-        <a href="#takeaways">Key Takeaways</a>
-        <a href="#notes">家長筆記</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav" aria-label="頁面導覽">
+          <a href="#video">影片</a>
+          <a href="#toc">目錄</a>
+          <a href="#speaker">講者重點</a>
+          <a href="#takeaways">Key Takeaways</a>
+          <a href="#notes">家長筆記</a>
+        </nav>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Toggle language">EN</button>
+      </div>
     </div>
   </header>
 
@@ -914,8 +952,360 @@
 
   <footer class="footer">
     <div class="container">
-      製作：Ms Lam信義園家長會，pwwered by AI tools
+      製作：Ms Lam信義園家長會，powered by AI tools
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      zh: {
+        htmlLang: 'zh-Hant',
+        title: 'SEL 社會情緒學習力｜成為穩定陪伴者',
+        description: 'SEL 社會情緒學習力：成為穩定陪伴者｜家長一頁式筆記、講者重點、Key Takeaways 與演講影片',
+        toggle: 'EN',
+        toggleAria: 'Switch to English',
+        selectors: {
+          '.brand span:last-child': '社會情緒學習力家長筆記',
+          '.nav a[href="#video"]': '影片',
+          '.nav a[href="#toc"]': '目錄',
+          '.nav a[href="#speaker"]': '講者重點',
+          '.nav a[href="#takeaways"]': 'Key Takeaways',
+          '.nav a[href="#notes"]': '家長筆記',
+          '.eyebrow': 'SEL × 家長一頁式筆記 × 演講整理',
+          'h1': 'SEL 社會情緒學習力：<br>成為穩定陪伴者',
+          '.hero-subtitle': '把演講內容整理成一個適合家長閱讀、分享與保存的單頁網站版本，<br>包含影片、講者重點、目錄導覽、關鍵收穫，以及可立即帶回家的實作提醒。',
+          '.hero-quote': '孩子不是只需要被糾正，而是需要被穩定的大人陪著理解自己。',
+          '.hero-actions .btn-primary': '先看 Key Takeaways',
+          '.hero-actions .btn-secondary': '觀看演講影片',
+          '.hero-aside .stat:nth-of-type(1) .stat-label': '核心主題',
+          '.hero-aside .stat:nth-of-type(1) .stat-value': '自我覺察',
+          '.hero-aside .stat:nth-of-type(1) .stat-desc': 'SEL 五大面向中最基礎、也最關鍵的能力。',
+          '.hero-aside .stat:nth-of-type(2) .stat-label': '家長角色',
+          '.hero-aside .stat:nth-of-type(2) .stat-value': '穩定陪伴者',
+          '.hero-aside .stat:nth-of-type(2) .stat-desc': '不是急著糾正，而是在經驗後陪孩子整理與修復。',
+          '.hero-aside .stat:nth-of-type(3) .stat-label': '最重要提醒',
+          '.hero-aside .stat:nth-of-type(3) .stat-value': '情緒無對錯',
+          '.hero-aside .stat:nth-of-type(3) .stat-desc': '真正需要被引導的是情緒背後的表達方式與行為。',
+          '#video h2': '演講影片',
+          '#video .section-header p': 'English dubbed audio is available if you watch on YouTube',
+          '#video .video-note a': '繼續收看：SEL社會情緒學習力：成為穩定陪伴者（下）',
+          '#toc h2': '快速目錄',
+          '#toc .section-header p': '先看你最需要的部分：曲老師觀點、關鍵收穫、家長做法與提醒。',
+          '#toc .toc-grid a:nth-of-type(1) strong': '講者重點',
+          '#toc .toc-grid a:nth-of-type(2) strong': 'Key Takeaways',
+          '#toc .toc-grid a:nth-of-type(3) strong': '家長一頁式筆記',
+          '#toc .toc-grid a:nth-of-type(4) strong': '回家就能說的話',
+          '#speaker h2': '講者重點',
+          '#speaker .section-header p': '這場演講最鮮明的觀點，不只是談理論，而是強調如何在真實生活裡陪孩子長出社會情緒能力。',
+          '#speaker .speaker-card:nth-of-type(1) .pill': '觀點 01',
+          '#speaker .speaker-card:nth-of-type(1) h3': '情緒一定要放回情境裡理解',
+          '#speaker .speaker-card:nth-of-type(1) p': '孩子在家穩定、到學校狀況變多，不代表退步，而是人、刺激、社交與壓力都變了。SEL 比只談 EQ 更完整，因為它把環境放回理解裡。',
+          '#speaker .speaker-card:nth-of-type(2) .pill': '觀點 02',
+          '#speaker .speaker-card:nth-of-type(2) h3': '自我覺察是所有能力的地基',
+          '#speaker .speaker-card:nth-of-type(2) p': '不知道自己怎麼了，就談不上管理情緒；看不清自己的狀態，也很難真正理解別人、維持關係或做出穩定選擇。',
+          '#speaker .speaker-card:nth-of-type(3) .pill': '觀點 03',
+          '#speaker .speaker-card:nth-of-type(3) h3': '大人先穩，孩子才有機會學',
+          '#speaker .speaker-card:nth-of-type(3) p': '孩子不是從說理中長大，而是從關係裡學會情緒。大人的說話方式、修復方式、本身就是孩子最常接觸到的教材。',
+          '#summary h2': '講座內容摘要',
+          '#summary .section-header p': '整理這場演講的核心脈絡、主要觀點與最值得家長帶回家的結論。',
+          '#summary .grid-2 .notes-card:nth-of-type(1) h3': '核心脈絡',
+          '#summary .grid-2 .notes-card:nth-of-type(1) p': '本場講座以 SEL（社會情緒學習）為核心，主張情緒從來不是孤立的個人能力問題，而是深受情境、關係與環境影響。曲老師指出，現代孩子與家長面對資訊爆量、社群媒體、高速聯絡與持續在線的生活型態，整體壓力比過去更高，也使 SEL 成為教育現場更重要的能力。其中最核心的基礎是「自我覺察」：唯有能看見自己的情緒、壓力、需求與價值，才談得上自我管理、理解他人、建立關係與做出負責任的決定。曲老師並強調，家長與老師真正重要的角色，不是急著糾正、安慰、貼標籤或只處理行為，而是在真實生活事件之後，先穩住自己，再陪孩子回頭整理經驗、看見內在狀態、理解情緒與行為的差別，並在關係中示範對話與修復。穩定的大人，就是孩子最重要的情緒環境。',
+          '#summary .grid-2 .notes-card:nth-of-type(2) h3': '主要論點',
+          '#summary > .container > div:last-child .notes-card h3': '結論',
+          '#summary > .container > div:last-child .notes-card p': 'SEL 的關鍵不是快速讓孩子停止情緒，而是讓大人在真實生活中成為穩定陪伴者，陪孩子在每一次哭鬧、衝突、挫折與選擇後，回頭看見自己、理解別人、修正行為，並逐步長出成熟的自我管理與關係能力。',
+          '#timeline h2': '每 10 分鐘重點整理',
+          '#timeline .section-header p': '可展開各時段內容，快速回看講座的論述脈絡、案例與方法重點。',
+          '#takeaways h2': 'Key Takeaways',
+          '#takeaways .section-header p': '如果只帶走幾件事，這五點最值得留下來。',
+          '#takeaways .takeaway-card:nth-of-type(1) h3': '1. 情緒沒有對錯',
+          '#takeaways .takeaway-card:nth-of-type(1) p': '生氣、失望、嫉妒、難過都不是錯；真正需要被引導的是表達方式與行為。',
+          '#takeaways .takeaway-card:nth-of-type(2) h3': '2. 行為背後一定有狀態',
+          '#takeaways .takeaway-card:nth-of-type(2) p': '只處理打人、哭鬧、衝撞等表面行為，通常不夠；更關鍵的是背後的挫折、需求或壓力。',
+          '#takeaways .takeaway-card:nth-of-type(3) h3': '3. 經驗後的反思才是學習',
+          '#takeaways .takeaway-card:nth-of-type(3) p': 'SEL 真正發生在事件之後：孩子有沒有機會回看、命名、理解與整理自己。',
+          '#takeaways .takeaway-card:nth-of-type(4) h3': '4. 修復比完美更重要',
+          '#takeaways .takeaway-card:nth-of-type(4) p': '家長不必永遠不失控；更重要的是失控後願意回來修復關係，示範面對情緒的方式。',
+          '#takeaways .takeaway-card:nth-of-type(5) h3': '5. 好好說話就是教養',
+          '#takeaways .takeaway-card:nth-of-type(5) p': '孩子會記得你如何說話、如何衝突、如何收尾。語言本身就是情緒教育的一部分。',
+          '#takeaways .takeaway-card:nth-of-type(6) h3': 'Bonus：先理解，再引導',
+          '#takeaways .takeaway-card:nth-of-type(6) p': '理解孩子的內在狀態，不代表認同行為；而是幫助孩子走向更成熟的下一步。',
+          '.highlight-strip h3': '一句話濃縮這場演講',
+          '.highlight-strip p': '不是急著讓孩子停止情緒，而是在真實生活經驗中，陪他看見自己、理解自己、慢慢長出調節能力。',
+          '.quote-box': '成為穩定陪伴者，不是永遠不生氣，而是情緒來了以後，仍願意回來理解孩子，也理解自己。',
+          '#notes h2': '一頁式家長筆記',
+          '#notes .section-header p': '適合快速複習與轉發的家長版濃縮整理。',
+          '#notes .notes-card:nth-of-type(1) h3': '5 個核心觀念',
+          '#notes .notes-card:nth-of-type(2) h3': '家長最值得記住的做法',
+          '#say h2': '回家就能開始的 5 句話',
+          '#say .section-header p': '當孩子情緒上來時，比起講道理，先用這些句子打開對話。',
+          '#say .list-card:nth-of-type(1) h3': '可以直接用的句子',
+          '#say .list-card:nth-of-type(2) h3': '家長最常踩的 5 個雷',
+          'footer .container': '製作：Ms Lam信義園家長會，powered by AI tools'
+        },
+        lists: {
+          '#summary .grid-2 .notes-card:nth-of-type(2) li': [
+            '<strong>SEL 之所以比 EQ 更重要，是因為情緒一定嵌在情境裡：</strong> 孩子在家與在校表現不同，不一定是退步，而是所處的人際密度、刺激量與互動複雜度不同。',
+            '<strong>現代社會的環境壓力，讓 SEL 更不能忽略：</strong> 手機、網路、社群媒體讓人幾乎沒有斷點，資訊量與互動速度都大幅增加，衝突也更容易外溢到線上。',
+            '<strong>自我覺察是整個 SEL 的地基：</strong> 曲老師以走路、爬山、滑冰、滑雪等例子說明，當人把注意力拉回自己，才有能力開始整理內在狀態。',
+            '<strong>大人本身就是孩子的教材：</strong> 孩子不是靠說理學情緒，而是從大人的語氣、表達方式、衝突處理與修復模式中吸收學會。',
+            '<strong>情緒與行為必須分開看：</strong> 情緒本身沒有對錯；需要被規範的是行為。只處理打人、哭鬧、失控等表面行為，往往只是治標不治本。',
+            '<strong>語言能力會直接影響情緒能力：</strong> 情緒詞彙、故事、繪本、對話與書寫，能幫孩子提升辨識與整理情緒的能力，也提高所謂的「情緒解析度」。',
+            '<strong>教養的核心不是完美，而是修復：</strong> 大人難免失控，但若能停下來、說明、重來、修補關係，就仍然是在示範成熟的情緒能力。'
+          ],
+          '#notes .notes-card:nth-of-type(1) li': [
+            '情緒不是孩子自己的問題，而是受情境影響。',
+            'SEL 的核心不是技巧，而是自我覺察。',
+            '情緒沒有對錯，有對錯的是行為。',
+            '真正的學習，發生在經驗之後的整理。',
+            '大人本身就是孩子的情緒教材。'
+          ],
+          '#notes .notes-card:nth-of-type(2) li': [
+            '先停一下，先穩住自己，再介入。',
+            '不要只處理行為，也看背後狀態。',
+            '用觀察分享取代貼標籤。',
+            '幫孩子說出情緒，而不是急著壓掉。',
+            '失控後記得修復，不用追求完美。'
+          ],
+          '#say .list-card:nth-of-type(1) li': [
+            '我先不急著處理，我想先懂你怎麼了。',
+            '你現在有情緒是可以的，但我們要一起找更好的做法。',
+            '我看到你剛剛真的很在意。',
+            '你覺得剛剛發生了什麼？',
+            '我們等一下冷靜一點，再一起想怎麼辦。'
+          ],
+          '#say .list-card:nth-of-type(2) li': [
+            '一有情緒就急著講道理。',
+            '急著安慰，卻沒有真正理解。',
+            '只處理行為，不處理情緒。',
+            '用貼標籤代替對話。',
+            '要孩子穩定，但大人自己很暴躁。'
+          ]
+        },
+        timeline: [
+          ['#timeline .accordion-item:nth-of-type(1) summary', '00:00–10:00'],
+          ['#timeline .accordion-item:nth-of-type(1) .accordion-content', '開場先由主持人介紹曲老師與講座背景。曲老師從家長熟悉的 EQ、情緒教育談起，進一步提出「為什麼現在要談 SEL，而不只是談 EQ」。他認為關鍵差別在於：人的情緒不會脫離情境，孩子的情緒表現永遠與環境、人際密度與互動脈絡綁在一起。曲老師也以自己在園所中觀察孩子、反覆自問「他怎麼了、他在想什麼」為例，說明觀察與自問自答是理解社會情緒的起點。'],
+          ['#timeline .accordion-item:nth-of-type(2) summary', '10:00–20:00'],
+          ['#timeline .accordion-item:nth-of-type(2) .accordion-content', '這段主要說明為什麼當代教育環境必須重視 SEL。曲老師指出，手機、網路與社群媒體讓生活幾乎沒有斷點，資訊量更大、速度更快、壓力也更高。學校衝突不再只停留在現場，可能還沒放學就已經在 IG、Line 群組延燒。曲老師也以養狗經驗類比，指出連寵物社交都可能在社群上被放大，何況是親子與校園互動。最後帶到教育部近年推動 SEL 的背景，說明這不是新題目，而是在新環境下被重新凸顯的重要能力。'],
+          ['#timeline .accordion-item:nth-of-type(3) summary', '20:00–30:00'],
+          ['#timeline .accordion-item:nth-of-type(3) .accordion-content', '曲老師轉入自己的生命與工作經驗：過去在均一教育平台錄製大量教學影片，也曾赴美觀察 KIPP 等教育現場，並將這些觀察結合自身輔導工作，逐步形成對 SEL 的實踐觀點。接著，他分享自己帶學生長距離滑滑板、徒步環島、預備西班牙朝聖之路等經驗，說明這些活動並非只是挑戰體能，而是為了訓練「自我覺察」。他特別強調，只要走路時間夠長，人比較容易進入獨處、內在聚焦與回到自己身上的狀態，這正是覺察能力的基礎。'],
+          ['#timeline .accordion-item:nth-of-type(4) summary', '30:00–40:00'],
+          ['#timeline .accordion-item:nth-of-type(4) .accordion-content', '這段延伸談到更多用情境培養覺察的方法，例如爬山、滑冰、滑雪等。曲老師指出，當人處在怕跌倒、要平衡、必須全神貫注照顧身體的情境時，注意力自然回到自己身上，這是體驗「覺察」的有效方式。接著，他把主題拉回蒙特梭利提出的「預備好的成人」：孩子像海綿一樣吸收環境，而大人的存在就是環境的一部分。曲老師也透過案例提醒：孩子會自然吸收大人的情緒表達與說話方式，因此大人先成為穩定的人，比任何說理都更重要。'],
+          ['#timeline .accordion-item:nth-of-type(5) summary', '40:00–50:00'],
+          ['#timeline .accordion-item:nth-of-type(5) .accordion-content', '曲老師在這段先談「修復」的重要性，提醒家長即使過去做得不夠好，也永遠不會太晚，因為關係可以修復。之後開始說明情緒的基本特性：emotion 本身就帶有 action 的成分，表示情緒被觸動後，會推動人立刻做點什麼。正因如此，最重要的能力不是立刻反應，而是先停下來。曲老師接著說明情緒會有高峰與回落，因此時間是調節機制的一部分；不只是自己需要時間，孩子也需要時間。當孩子情緒正高時，急著介入、說理或安慰，通常都不容易有效。'],
+          ['#timeline .accordion-item:nth-of-type(6) summary', '50:00–60:00'],
+          ['#timeline .accordion-item:nth-of-type(6) .accordion-content', '這段聚焦於「情緒與行為的區分」。曲老師強調，情緒沒有好壞與對錯，真正有對錯的是行為；因此教育不能只停在指責「打人不對」，而要繼續追問：這個孩子為什麼打人？背後是什麼需求沒有被照顧？是挫折、失控、表達能力不足，還是累積已久的刺激？他提醒家長，理解一個孩子的心理狀態，不代表認同行為，而是為了真正處理根源。接著，他也指出大人常把安慰當作處理情緒的手段，但太快安慰，有時反而傳遞出「你不懂我」的訊息。'],
+          ['#timeline .accordion-item:nth-of-type(7) summary', '60:00–70:00'],
+          ['#timeline .accordion-item:nth-of-type(7) .accordion-content', '曲老師在這裡進一步引入近代情緒研究。首先，他指出表情與肢體語言不能完整代表內在狀態，不能只靠皺眉、哭或笑來判讀一個人的感受，並用學生誤以為媽媽皺眉就代表不滿意的例子，說明覺察需要更多脈絡與工具。其次，他強調人的情緒能力可以透過學習改變，不必灰心。最重要的是語言：情緒詞彙、概念與敘說能力會直接影響情緒能力。孩子若能慢慢學會說出自己的感受、寫下自己的心情，或透過繪本、故事建立情緒資料庫，將更有能力理解與調節自己。'],
+          ['#timeline .accordion-item:nth-of-type(8) summary', '70:00–80:00'],
+          ['#timeline .accordion-item:nth-of-type(8) .accordion-content', '這段曲老師以《腦筋急轉彎》為例談「情緒解析度」，也就是一個人能否細緻地看清自己內在狀態。解析度越高，通常調節能力越好。接著他介紹 CASEL 提出的 SEL 五大面向：自我覺察、自我管理、社會覺察、關係技巧與負責任的決定，但也提出自己在多年實務後的核心主張：自我覺察其實是整個系統的中心。因為如果連自己的情緒、壓力與狀態都搞不清楚，就談不上管理自己，更難看見別人、經營關係或做出成熟的選擇。'],
+          ['#timeline .accordion-item:nth-of-type(9) summary', '80:00–90:00'],
+          ['#timeline .accordion-item:nth-of-type(9) .accordion-content', '曲老師繼續把五大面向往下拆：自我覺察如何成為自我管理的基礎，因為你得先知道壓力從哪裡來，才可能調節自己；他也補充近年談自我管理常會提到 body budget，也就是睡眠、飲食、運動等身體預算對情緒的直接影響。接著他說明，自我覺察也是社會覺察與關係技巧的基礎，因為若連自己都掌握不好，就更難掌握他人。最後，他提醒覺察不會有「完成的一天」，因為人的狀態會一直變，所以 SEL 不是先把覺察練滿才開始，而是要在生活經驗裡持續練習。'],
+          ['#timeline .accordion-item:nth-of-type(10) summary', '90:00–100:00'],
+          ['#timeline .accordion-item:nth-of-type(10) .accordion-content', '這段是全場最具體的家長操作方法。曲老師指出，SEL 的核心不是教材，而是「經驗之後的覺察與反思」；孩子哭鬧、失控、挫折、衝突，其實正是最佳介入時機。前提是大人要先穩住自己，才能陪孩子整理。曲老師提醒，尤其對年幼孩子，覺察不一定靠提問，也可以透過大人分享自己的觀察，提供孩子參照，但不要太快下定論或貼標籤。最後，他用滑雪分組案例說明如何在具體事件後，協助孩子看見自己的核心議題：例如太在意跟朋友待在一起，反而忽略自身能力與對群體造成的影響。這樣的整理才是真正的 SEL 學習。'],
+          ['#timeline .accordion-item:nth-of-type(11) summary', '100:00–106:00'],
+          ['#timeline .accordion-item:nth-of-type(11) .accordion-content', 'Q&A 主要延伸到三個面向：第一，面對固執或很堅持的孩子，曲老師認為不能離開具體情境空談做法，而要看關係、權威、需求與現場條件如何調整；第二，他提醒家長其實本來就有權威，只是很多人不敢使用；第三，對於「被打的孩子要怎麼處理」，曲老師提出更細緻的觀點：陪伴被打的一方整理整個脈絡，不是檢討被害者，而是幫助孩子辨識風險、理解互動變化、學習保護自己。最後他再次重申，行為與內在狀態需要區分，理解情緒脈絡不等於認同行為，但對話若要深入，就不能只停留在表面是非。']
+        ]
+      },
+      en: {
+        htmlLang: 'en',
+        title: 'SEL Social-Emotional Learning | Becoming a Steady Companion',
+        description: 'SEL Social-Emotional Learning: Becoming a Steady Companion | One-page parent notes, speaker highlights, key takeaways, and talk video',
+        toggle: '中文',
+        toggleAria: '切換成中文',
+        selectors: {
+          '.brand span:last-child': 'SEL Parent Notes',
+          '.nav a[href="#video"]': 'Video',
+          '.nav a[href="#toc"]': 'Contents',
+          '.nav a[href="#speaker"]': 'Speaker Highlights',
+          '.nav a[href="#takeaways"]': 'Key Takeaways',
+          '.nav a[href="#notes"]': 'Parent Notes',
+          '.eyebrow': 'SEL × Parent One-Page Notes × Talk Recap',
+          'h1': 'SEL Social-Emotional Learning:<br>Becoming a Steady Companion',
+          '.hero-subtitle': 'A single-page version of the talk designed for parents to read, share, and revisit—<br>including the video, speaker highlights, a quick guide, key takeaways, and practical reminders to bring home right away.',
+          '.hero-quote': 'Children do not only need correction—they need steady adults who help them understand themselves.',
+          '.hero-actions .btn-primary': 'View Key Takeaways',
+          '.hero-actions .btn-secondary': 'Watch the Talk',
+          '.hero-aside .stat:nth-of-type(1) .stat-label': 'Core Theme',
+          '.hero-aside .stat:nth-of-type(1) .stat-value': 'Self-Awareness',
+          '.hero-aside .stat:nth-of-type(1) .stat-desc': 'The most foundational and essential skill among the five SEL domains.',
+          '.hero-aside .stat:nth-of-type(2) .stat-label': 'Parent Role',
+          '.hero-aside .stat:nth-of-type(2) .stat-value': 'Steady Companion',
+          '.hero-aside .stat:nth-of-type(2) .stat-desc': 'Not rushing to correct, but helping children reflect and repair after real experiences.',
+          '.hero-aside .stat:nth-of-type(3) .stat-label': 'Key Reminder',
+          '.hero-aside .stat:nth-of-type(3) .stat-value': 'Emotions Are Not Wrong',
+          '.hero-aside .stat:nth-of-type(3) .stat-desc': 'What needs guidance is how emotions are expressed through words and behavior.',
+          '#video h2': 'Talk Video',
+          '#video .section-header p': 'English dubbed audio is available if you watch on YouTube',
+          '#video .video-note a': 'Continue watching: SEL Social-Emotional Learning: Becoming a Steady Companion (Part 2)',
+          '#toc h2': 'Quick Contents',
+          '#toc .section-header p': 'Start with what matters most to you: the speaker’s perspective, key takeaways, parent practices, and practical reminders.',
+          '#toc .toc-grid a:nth-of-type(1) strong': 'Speaker Highlights',
+          '#toc .toc-grid a:nth-of-type(2) strong': 'Key Takeaways',
+          '#toc .toc-grid a:nth-of-type(3) strong': 'Parent One-Page Notes',
+          '#toc .toc-grid a:nth-of-type(4) strong': 'Phrases to Use at Home',
+          '#speaker h2': 'Speaker Highlights',
+          '#speaker .section-header p': 'What makes this talk stand out is not only its theory, but its emphasis on how children build social-emotional ability through real-life experiences.',
+          '#speaker .speaker-card:nth-of-type(1) .pill': 'Point 01',
+          '#speaker .speaker-card:nth-of-type(1) h3': 'Emotions must be understood in context',
+          '#speaker .speaker-card:nth-of-type(1) p': 'A child who seems steady at home but struggles more at school is not necessarily regressing. The people, stimulation, social demands, and pressure have changed. SEL goes beyond EQ because it brings the environment back into the picture.',
+          '#speaker .speaker-card:nth-of-type(2) .pill': 'Point 02',
+          '#speaker .speaker-card:nth-of-type(2) h3': 'Self-awareness is the foundation of every other skill',
+          '#speaker .speaker-card:nth-of-type(2) p': 'If a child cannot tell what is happening inside, emotional regulation becomes difficult. Without seeing one’s own state clearly, it is also harder to understand others, sustain relationships, or make thoughtful choices.',
+          '#speaker .speaker-card:nth-of-type(3) .pill': 'Point 03',
+          '#speaker .speaker-card:nth-of-type(3) h3': 'Adults must steady themselves first',
+          '#speaker .speaker-card:nth-of-type(3) p': 'Children do not mainly learn emotions through explanation. They learn through relationships. The way adults speak, react, and repair is itself the curriculum.',
+          '#summary h2': 'Talk Summary',
+          '#summary .section-header p': 'A concise overview of the talk’s core structure, major arguments, and most useful conclusions for parents.',
+          '#summary .grid-2 .notes-card:nth-of-type(1) h3': 'Core Thread',
+          '#summary .grid-2 .notes-card:nth-of-type(1) p': 'This talk centers on SEL (Social-Emotional Learning) and argues that emotions are never isolated personal traits; they are deeply shaped by context, relationships, and environment. Mr. Qu points out that today’s children and parents live amid information overload, social media, constant connectivity, and accelerated communication, all of which increase overall stress and make SEL even more critical in education. At the heart of SEL is self-awareness: only when children can notice their own emotions, pressure, needs, and values can they begin to regulate themselves, understand others, build relationships, and make responsible decisions. He also emphasizes that the role of parents and teachers is not to rush into correcting, comforting, labeling, or merely stopping behavior. Instead, after real-life situations occur, adults need to steady themselves first, then help children revisit the experience, notice their inner state, understand the difference between emotion and behavior, and model dialogue and repair. A steady adult becomes the most important emotional environment for a child.',
+          '#summary .grid-2 .notes-card:nth-of-type(2) h3': 'Main Arguments',
+          '#summary > .container > div:last-child .notes-card h3': 'Conclusion',
+          '#summary > .container > div:last-child .notes-card p': 'The goal of SEL is not to make children stop feeling quickly. It is to help adults become steady companions in real life—so that after every moment of crying, conflict, frustration, or choice, children can look back, understand themselves and others, adjust behavior, and gradually grow stronger self-management and relationship skills.',
+          '#timeline h2': '10-Minute Breakdown',
+          '#timeline .section-header p': 'Expand each section to revisit the talk’s flow of ideas, examples, and practical methods.',
+          '#takeaways h2': 'Key Takeaways',
+          '#takeaways .section-header p': 'If parents carry away only a few ideas, these are the ones most worth keeping.',
+          '#takeaways .takeaway-card:nth-of-type(1) h3': '1. Emotions are not wrong',
+          '#takeaways .takeaway-card:nth-of-type(1) p': 'Anger, disappointment, jealousy, and sadness are not the problem. What needs guidance is how those emotions are expressed through behavior.',
+          '#takeaways .takeaway-card:nth-of-type(2) h3': '2. There is always a state behind behavior',
+          '#takeaways .takeaway-card:nth-of-type(2) p': 'Addressing only hitting, crying, or visible conflict on the surface is often not enough. Frustration, unmet needs, or pressure usually sit underneath.',
+          '#takeaways .takeaway-card:nth-of-type(3) h3': '3. Reflection after experience is where learning happens',
+          '#takeaways .takeaway-card:nth-of-type(3) p': 'SEL happens after the event—when a child gets the chance to look back, name, understand, and reorganize the experience.',
+          '#takeaways .takeaway-card:nth-of-type(4) h3': '4. Repair matters more than perfection',
+          '#takeaways .takeaway-card:nth-of-type(4) p': 'Parents do not need to stay calm all the time. What matters more is returning to repair the relationship and model a mature response after losing composure.',
+          '#takeaways .takeaway-card:nth-of-type(5) h3': '5. The way you speak is part of parenting',
+          '#takeaways .takeaway-card:nth-of-type(5) p': 'Children remember how adults speak, clash, and come back together. Language itself is part of emotional education.',
+          '#takeaways .takeaway-card:nth-of-type(6) h3': 'Bonus: Understand first, guide second',
+          '#takeaways .takeaway-card:nth-of-type(6) p': 'Understanding a child’s inner state does not mean approving the behavior. It means helping the child move toward a more mature next step.',
+          '.highlight-strip h3': 'The Talk in One Sentence',
+          '.highlight-strip p': 'The goal is not to shut down a child’s emotion quickly, but to accompany the child through real-life experiences so self-understanding and regulation can gradually grow.',
+          '.quote-box': 'Becoming a steady companion does not mean never getting angry. It means returning, after emotion has risen, to understand both the child and yourself.',
+          '#notes h2': 'One-Page Parent Notes',
+          '#notes .section-header p': 'A condensed version designed for quick review and easy sharing among parents.',
+          '#notes .notes-card:nth-of-type(1) h3': '5 Core Ideas',
+          '#notes .notes-card:nth-of-type(2) h3': 'Practices Parents Should Remember',
+          '#say h2': '5 Phrases to Start Using at Home',
+          '#say .section-header p': 'When a child becomes emotional, these phrases open dialogue better than immediate reasoning.',
+          '#say .list-card:nth-of-type(1) h3': 'Helpful Phrases',
+          '#say .list-card:nth-of-type(2) h3': '5 Common Parent Pitfalls',
+          'footer .container': 'Created by the Ms Lam Xinyi Parent Association, powered by AI tools'
+        },
+        lists: {
+          '#summary .grid-2 .notes-card:nth-of-type(2) li': [
+            '<strong>SEL matters more than EQ alone because emotions are always embedded in context:</strong> A child’s different behavior at home and school is not automatically regression. It often reflects differences in social density, stimulation, and interactional complexity.',
+            '<strong>Modern environmental pressure makes SEL impossible to ignore:</strong> Phones, the internet, and social media remove natural pauses in life. Information and interaction move faster, and conflict spills online more easily.',
+            '<strong>Self-awareness is the ground floor of SEL:</strong> Through examples like walking, hiking, ice skating, and skiing, Mr. Qu shows that when attention returns to the self, inner organization becomes possible.',
+            '<strong>Adults themselves are the teaching material:</strong> Children do not learn emotions mainly through explanation. They absorb tone, expression, conflict style, and repair patterns from the adults around them.',
+            '<strong>Emotion and behavior must be separated:</strong> Emotions themselves are not right or wrong. Behavior needs boundaries. If adults address only hitting, crying, or losing control on the surface, they often treat symptoms rather than causes.',
+            '<strong>Language directly shapes emotional ability:</strong> Emotional vocabulary, stories, books, conversation, and writing help children identify and organize feelings more clearly and improve what he calls emotional resolution.',
+            '<strong>The heart of parenting is not perfection but repair:</strong> Adults will lose their composure at times, but when they pause, explain, restart, and repair, they are still modeling mature emotional skill.'
+          ],
+          '#notes .notes-card:nth-of-type(1) li': [
+            'A child’s emotions are not just personal traits; they are shaped by context.',
+            'The heart of SEL is not technique but self-awareness.',
+            'Emotions are not wrong; behavior is where boundaries matter.',
+            'Real learning happens through reflecting after experience.',
+            'Adults themselves are part of the child’s emotional curriculum.'
+          ],
+          '#notes .notes-card:nth-of-type(2) li': [
+            'Pause first and steady yourself before stepping in.',
+            'Do not address only the behavior; look at the state underneath.',
+            'Share observations instead of attaching labels.',
+            'Help children name feelings rather than suppress them quickly.',
+            'After losing control, repair the relationship instead of chasing perfection.'
+          ],
+          '#say .list-card:nth-of-type(1) li': [
+            'I don’t want to rush to fix this. I want to understand what is going on for you first.',
+            'It is okay to have big feelings right now, and we can still look for a better way together.',
+            'I can see that this really mattered to you.',
+            'What do you think happened just now?',
+            'Let’s calm down a little first, and then figure out what to do together.'
+          ],
+          '#say .list-card:nth-of-type(2) li': [
+            'Jumping straight into reasoning as soon as emotions appear.',
+            'Rushing to comfort without truly understanding.',
+            'Addressing behavior only while ignoring emotion.',
+            'Replacing dialogue with labels.',
+            'Expecting the child to stay regulated while the adult is emotionally overloaded.'
+          ]
+        },
+        timeline: [
+          ['#timeline .accordion-item:nth-of-type(1) summary', '00:00–10:00'],
+          ['#timeline .accordion-item:nth-of-type(1) .accordion-content', 'The talk opens with an introduction to Mr. Qu and the session topic. Starting from concepts parents may already know—EQ and emotional education—he asks why SEL is now being discussed instead of emotion alone. His answer is that emotions never exist outside context. A child’s emotional expression is always tied to environment, social density, and interaction patterns. He also uses his own practice of observing children in the classroom and repeatedly asking himself, “What is happening for this child?” to show that observation and self-questioning are where social-emotional understanding begins.'],
+          ['#timeline .accordion-item:nth-of-type(2) summary', '10:00–20:00'],
+          ['#timeline .accordion-item:nth-of-type(2) .accordion-content', 'This section explains why contemporary educational environments must take SEL seriously. Mr. Qu argues that phones, the internet, and social media have eliminated many natural breaks in life, greatly increasing information load, speed, and stress. Conflicts no longer stay in the classroom; they may spread to Instagram or group chats before the school day is even over. Using even dog-park interactions as an example, he shows how quickly ordinary social encounters can be magnified online. He then connects this to the Ministry of Education’s recent SEL push, describing SEL not as a brand-new issue but as an old concern made newly urgent by changing conditions.'],
+          ['#timeline .accordion-item:nth-of-type(3) summary', '20:00–30:00'],
+          ['#timeline .accordion-item:nth-of-type(3) .accordion-content', 'Here Mr. Qu turns to his own educational path: recording large numbers of learning videos for Junyi Academy, observing schools such as KIPP in the United States, and combining those experiences with his counseling work to shape his SEL practice. He then describes taking students on long-distance skateboarding journeys, round-island walks, and preparations for the Camino de Santiago. These are not simply physical challenges; they are deliberate ways of training self-awareness. His key point is that when walking lasts long enough, people are more likely to enter solitude, turn inward, and begin noticing themselves—an essential base for self-awareness.'],
+          ['#timeline .accordion-item:nth-of-type(4) summary', '30:00–40:00'],
+          ['#timeline .accordion-item:nth-of-type(4) .accordion-content', 'Mr. Qu expands this idea through examples like hiking, ice skating, and skiing. When a person is afraid of falling, trying to maintain balance, and forced to pay close attention to the body, attention naturally returns inward. That is a powerful way to experience awareness rather than merely talking about it abstractly. He then connects this to Montessori’s idea of the “prepared adult”: children absorb their environment like sponges, and adults are part of that environment. Through examples, he stresses that children naturally absorb the emotional tone and speaking style of the adults around them, so becoming a steadier adult matters more than giving lectures.'],
+          ['#timeline .accordion-item:nth-of-type(5) summary', '40:00–50:00'],
+          ['#timeline .accordion-item:nth-of-type(5) .accordion-content', 'This section begins with the importance of repair. Mr. Qu reminds parents that even if they feel they have not done well in the past, it is never too late, because relationships can be repaired. He then explains a core property of emotion: the very word emotion contains motion, suggesting that once emotion is triggered, it pushes people toward action. For that reason, the most important skill is not immediate response but the ability to pause. He also explains that emotions rise and fall over time, so time itself is part of regulation. Children need that time too; when a child is in an emotional peak, rushing in with logic or comfort is rarely effective.'],
+          ['#timeline .accordion-item:nth-of-type(6) summary', '50:00–60:00'],
+          ['#timeline .accordion-item:nth-of-type(6) .accordion-content', 'This portion focuses on separating emotion from behavior. Mr. Qu emphasizes that emotions are not morally right or wrong; behavior is where boundaries matter. Parenting and education therefore cannot stop at “hitting is wrong.” Adults must also ask what sits beneath the behavior: unmet needs, frustration, overwhelm, limited expressive skill, or long-accumulated stimulation. Understanding a child’s psychological state does not mean approving the behavior; it means addressing the root issue rather than only the symptom. He also warns that adults often treat comforting as the answer to emotion, but comfort delivered too quickly can unintentionally communicate, “You don’t really understand me.”'],
+          ['#timeline .accordion-item:nth-of-type(7) summary', '60:00–70:00'],
+          ['#timeline .accordion-item:nth-of-type(7) .accordion-content', 'Mr. Qu next brings in modern emotion research. First, he notes that facial expression and body language are not complete windows into a person’s inner state. A furrowed brow, tears, or a smile do not automatically reveal what someone truly feels. He illustrates this with a student who assumed that her mother’s furrowed brow meant disappointment, when it did not. This shows why emotional understanding needs more context and better tools. He then argues that emotional skill can absolutely be learned and changed. The most important tool is language: emotional vocabulary, concepts, and storytelling ability directly shape emotional skill. Children who can gradually name, describe, or even write about their feelings gain stronger capacity to understand and regulate themselves.'],
+          ['#timeline .accordion-item:nth-of-type(8) summary', '70:00–80:00'],
+          ['#timeline .accordion-item:nth-of-type(8) .accordion-content', 'Using Inside Out as an example, Mr. Qu introduces the idea of emotional resolution—the ability to see one’s inner state in a fine-grained and nuanced way. The higher the resolution, the better regulation tends to be. He then reviews the CASEL framework of five SEL domains: self-awareness, self-management, social awareness, relationship skills, and responsible decision-making. After years of field experience, however, he offers his own central claim: self-awareness is not merely one category among five but the center of the whole system. Without clarity about one’s own emotions, stress, and state, it becomes much harder to regulate oneself, understand others, sustain relationships, or make mature choices.'],
+          ['#timeline .accordion-item:nth-of-type(9) summary', '80:00–90:00'],
+          ['#timeline .accordion-item:nth-of-type(9) .accordion-content', 'Mr. Qu continues by showing how self-awareness underlies the other domains. It supports self-management because a person must know where stress comes from before regulation is possible. He also mentions the recent concept of body budget: sleep, food, and movement directly shape emotional expression. Self-awareness is likewise the basis of social awareness and relationship skills, because a person who cannot track himself or herself well is even less equipped to track others. Finally, he warns that awareness is never “finished.” Human beings keep changing, so SEL is not something to complete before life begins. It is a lifelong practice woven into lived experience.'],
+          ['#timeline .accordion-item:nth-of-type(10) summary', '90:00–100:00'],
+          ['#timeline .accordion-item:nth-of-type(10) .accordion-content', 'This is the most practical section for parents. Mr. Qu insists that the core of SEL is not curriculum materials but reflection after experience. Moments of crying, losing control, frustration, and conflict are actually the best opportunities for intervention. The condition is that the adult must regulate first; only then can the child be accompanied in reflection. Especially with younger children, reflection does not have to come mainly through questioning. Adults can offer observations as references without rushing into conclusions or labels. He closes this section with a skiing-group example, showing how adults can help children recognize deeper patterns—for instance, focusing so much on staying with friends that they fail to notice their own skill level or the burden placed on the group. That kind of processing is where SEL truly happens.'],
+          ['#timeline .accordion-item:nth-of-type(11) summary', '100:00–106:00'],
+          ['#timeline .accordion-item:nth-of-type(11) .accordion-content', 'The Q&A extends the discussion in three directions. First, when dealing with children who are rigid or highly insistent, Mr. Qu argues that there is no universal answer outside context; adults must look at the specific relationship, authority, needs, and situational constraints involved. Second, he reminds parents that they already do possess authority, even if many feel uncomfortable using it. Third, he addresses what to do when a child is the one who gets hit. Helping that child review the full interaction is not victim-blaming; it is a way of teaching risk recognition, interaction awareness, and self-protection. He closes by reaffirming that behavior and inner state must be distinguished. Understanding emotional context is not the same as approving behavior, but deep dialogue requires going beyond surface right and wrong.']
+        ]
+      }
+    };
+
+    function applyTranslations(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = t.htmlLang;
+      document.title = t.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', t.description);
+
+      Object.entries(t.selectors).forEach(([selector, value]) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        if (value.includes('<br>') || value.includes('<strong>')) {
+          el.innerHTML = value;
+        } else {
+          el.textContent = value;
+        }
+      });
+
+      Object.entries(t.lists).forEach(([selector, items]) => {
+        const els = document.querySelectorAll(selector);
+        els.forEach((el, i) => {
+          if (items[i] !== undefined) el.innerHTML = items[i];
+        });
+      });
+
+      t.timeline.forEach(([selector, value]) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        el.textContent = value;
+      });
+
+      const btn = document.getElementById('lang-toggle');
+      btn.textContent = t.toggle;
+      btn.setAttribute('aria-label', t.toggleAria);
+      localStorage.setItem('page-lang', lang);
+    }
+
+    function detectInitialLanguage() {
+      const saved = localStorage.getItem('page-lang');
+      if (saved === 'zh' || saved === 'en') return saved;
+      const browserLang = (navigator.language || '').toLowerCase();
+      return browserLang.startsWith('zh') ? 'zh' : 'en';
+    }
+
+    let currentLang = detectInitialLanguage();
+    applyTranslations(currentLang);
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      applyTranslations(currentLang);
+    });
+  </script>
 </body>
 </html>
