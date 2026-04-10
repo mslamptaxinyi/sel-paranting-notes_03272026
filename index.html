@@ -645,6 +645,11 @@
               繼續收看：SEL社會情緒學習力：成為穩定陪伴者（下）
             </a>
           </div>
+          <div class="video-note">
+            <a id="slides-link" href="https://docs.google.com/presentation/d/1SjoPrOlbjLpl9v2E0e8Cm8xFQNnLesH127vj3Cfajp0/edit?slide=id.p1#slide=id.p1" target="_blank" rel="noopener noreferrer">
+              查看投影片
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -964,6 +969,7 @@
         description: 'SEL 社會情緒學習力：成為穩定陪伴者｜家長一頁式筆記、講者重點、Key Takeaways 與演講影片',
         toggle: 'EN',
         toggleAria: 'Switch to English',
+        slidesHref: 'https://docs.google.com/presentation/d/1SjoPrOlbjLpl9v2E0e8Cm8xFQNnLesH127vj3Cfajp0/edit?slide=id.p1#slide=id.p1',
         selectors: {
           '.brand span:last-child': '社會情緒學習力家長筆記',
           '.nav a[href="#video"]': '影片',
@@ -989,6 +995,7 @@
           '#video h2': '演講影片',
           '#video .section-header p': 'English dubbed audio is available if you watch on YouTube',
           '#video .video-note a': '繼續收看：SEL社會情緒學習力：成為穩定陪伴者（下）',
+          '#slides-link': '查看投影片',
           '#toc h2': '快速目錄',
           '#toc .section-header p': '先看你最需要的部分：曲老師觀點、關鍵收穫、家長做法與提醒。',
           '#toc .toc-grid a:nth-of-type(1) strong': '講者重點',
@@ -1112,6 +1119,7 @@
         description: 'SEL Social-Emotional Learning: Becoming a Steady Companion | One-page parent notes, speaker highlights, key takeaways, and talk video',
         toggle: '中文',
         toggleAria: '切換成中文',
+        slidesHref: 'https://docs.google.com/presentation/d/1KinFRLEkRQH1H-9YfuDOOLpOUBXN4c6ktFP0YhKbGnc/edit?slide=id.p1#slide=id.p1',
         selectors: {
           '.brand span:last-child': 'SEL Parent Notes',
           '.nav a[href="#video"]': 'Video',
@@ -1137,6 +1145,7 @@
           '#video h2': 'Talk Video',
           '#video .section-header p': 'English dubbed audio is available if you watch on YouTube',
           '#video .video-note a': 'Continue watching: SEL Social-Emotional Learning: Becoming a Steady Companion (Part 2)',
+          '#slides-link': 'View Slides',
           '#toc h2': 'Quick Contents',
           '#toc .section-header p': 'Start with what matters most to you: the speaker’s perspective, key takeaways, parent practices, and practical reminders.',
           '#toc .toc-grid a:nth-of-type(1) strong': 'Speaker Highlights',
@@ -1279,6 +1288,11 @@
           if (items[i] !== undefined) el.innerHTML = items[i];
         });
       });
+
+      const slidesLink = document.getElementById('slides-link');
+      if (slidesLink && t.slidesHref) {
+        slidesLink.href = t.slidesHref;
+      }
 
       t.timeline.forEach(([selector, value]) => {
         const el = document.querySelector(selector);
