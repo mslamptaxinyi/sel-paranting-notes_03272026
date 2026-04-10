@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEL 社會情緒學習力｜成為穩定陪伴者</title>
+  <meta name="description" content="SEL 社會情緒學習力：成為穩定陪伴者｜家長一頁式筆記、講者重點、Key Takeaways 與演講影片" />
+  <style>
+    :root {
+      --bg: #faf8f4;
+      --bg-soft: #f4efe7;
+      --surface: rgba(255,255,255,0.78);
+      --surface-strong: rgba(255,255,255,0.92);
+      --text: #2e3440;
+      --muted: #6b7280;
+      --line: rgba(120, 125, 135, 0.18);
+      --primary: #6f7c6b;
+      --primary-soft: #e7efe4;
+      --secondary: #c88f7a;
+      --secondary-soft: #f7ebe5;
+      --accent: #8f7fa3;
+      --shadow: 0 12px 35px rgba(36, 41, 47, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1140px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at top left, #f5efe6 0%, transparent 32%),
+        radial-gradient(circle at top right, #eef3ec 0%, transparent 28%),
+        linear-gradient(180deg, #fcfbf8 0%, #f7f3ee 55%, #faf8f4 100%);
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(250, 248, 244, 0.72);
+      border-bottom: 1px solid rgba(120, 125, 135, 0.1);
+    }
+
+    .site-header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary-soft), #fff);
+      border: 1px solid var(--line);
+      color: var(--primary);
+      box-shadow: var(--shadow);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: all .18s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,0.72);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 54px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card {
+      padding: 34px 30px;
+      background:
+        radial-gradient(circle at top right, rgba(200,143,122,0.16) 0%, transparent 32%),
+        radial-gradient(circle at top left, rgba(111,124,107,0.14) 0%, transparent 28%),
+        var(--surface-strong);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid rgba(111,124,107,0.16);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5.2vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-quote {
+      margin-top: 22px;
+      padding: 18px 18px 18px 20px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(143,127,163,0.18);
+      border-left: 6px solid var(--accent);
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(36, 41, 47, 0.08);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #7f8d7b);
+      border-color: transparent;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.8);
+      color: var(--text);
+    }
+
+    .hero-aside {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid var(--line);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .stat-value {
+      margin-top: 8px;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-desc {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 26px 0;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .toc {
+      padding: 18px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .toc a {
+      text-decoration: none;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.8);
+      transition: all .18s ease;
+    }
+
+    .toc a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(36, 41, 47, 0.08);
+    }
+
+    .toc small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: 11px;
+    }
+
+    .toc strong {
+      font-size: 16px;
+      line-height: 1.4;
+      display: block;
+    }
+
+    .video-shell {
+      padding: 18px;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #15181f;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card, .takeaway-card, .speaker-card, .notes-card, .list-card {
+      padding: 22px;
+    }
+
+    .feature-card h3,
+    .takeaway-card h3,
+    .speaker-card h3,
+    .notes-card h3,
+    .list-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-card p,
+    .takeaway-card p,
+    .speaker-card p,
+    .notes-card p,
+    .list-card p,
+    .speaker-card li,
+    .list-card li,
+    .notes-card li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      background: var(--secondary-soft);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .speaker-card ul,
+    .list-card ul,
+    .notes-card ul,
+    .notes-card ol {
+      padding-left: 20px;
+      margin: 12px 0 0;
+    }
+
+    .highlight-strip {
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(143,127,163,0.14) 0%, transparent 38%),
+        radial-gradient(circle at bottom right, rgba(111,124,107,0.12) 0%, transparent 34%),
+        var(--surface-strong);
+    }
+
+    .highlight-strip h3 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .highlight-strip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .quote-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .footer {
+      padding: 38px 0 62px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .highlight-strip,
+      .grid-3,
+      .grid-2,
+      .toc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header .inner {
+        align-items: start;
+        padding: 10px 0;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero-card,
+      .hero-aside,
+      .feature-card,
+      .takeaway-card,
+      .speaker-card,
+      .notes-card,
+      .list-card,
+      .highlight-strip,
+      .toc,
+      .video-shell {
+        padding: 20px;
+      }
+
+      h1 { font-size: 36px; }
+      .section-header h2 { font-size: 26px; }
+      .hero-quote { font-size: 18px; }
+      .nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container inner">
+      <a class="brand" href="#top">
+        <span class="brand-badge">SEL</span>
+        <span>家長筆記 Landing Page</span>
+      </a>
+      <nav class="nav" aria-label="頁面導覽">
+        <a href="#video">影片</a>
+        <a href="#toc">目錄</a>
+        <a href="#speaker">講者重點</a>
+        <a href="#takeaways">Key Takeaways</a>
+        <a href="#notes">家長筆記</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-card">
+          <div class="eyebrow">SEL × 家長一頁式筆記 × 演講整理</div>
+          <h1>SEL 社會情緒學習力：<br>成為穩定陪伴者</h1>
+          <p class="hero-subtitle">
+            把演講內容整理成一個適合家長閱讀、分享與保存的單頁網站版本，
+            包含影片、講者重點、目錄導覽、關鍵收穫，以及可立即帶回家的實作提醒。
+          </p>
+          <div class="hero-quote">
+            孩子不是只需要被糾正，而是需要被穩定的大人陪著理解自己。
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#takeaways">先看 Key Takeaways</a>
+            <a class="btn btn-secondary" href="#video">觀看演講影片</a>
+          </div>
+        </div>
+
+        <aside class="card hero-aside">
+          <div class="stat">
+            <div class="stat-label">核心主題</div>
+            <div class="stat-value">自我覺察</div>
+            <div class="stat-desc">SEL 五大面向中最基礎、也最關鍵的能力。</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">家長角色</div>
+            <div class="stat-value">穩定陪伴者</div>
+            <div class="stat-desc">不是急著糾正，而是在經驗後陪孩子整理與修復。</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">最重要提醒</div>
+            <div class="stat-value">情緒無對錯</div>
+            <div class="stat-desc">真正需要被引導的是情緒背後的表達方式與行為。</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>演講影片</h2>
+            <p>可直接在頁面中觀看原始 YouTube 演講內容，方便對照筆記回看。</p>
+          </div>
+        </div>
+        <div class="card video-shell">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/YACvReu9-2U"
+              title="SEL 社會情緒學習力：成為穩定陪伴者"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-note">影片來源：YouTube。若未顯示，請確認該影片允許外部嵌入播放。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="toc">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>快速目錄</h2>
+            <p>先看你最需要的部分：講者觀點、關鍵收穫、家長做法與提醒。</p>
+          </div>
+        </div>
+        <div class="card toc">
+          <div class="toc-grid">
+            <a href="#speaker"><small>01</small><strong>講者重點</strong></a>
+            <a href="#takeaways"><small>02</small><strong>Key Takeaways</strong></a>
+            <a href="#notes"><small>03</small><strong>家長一頁式筆記</strong></a>
+            <a href="#say"><small>04</small><strong>回家就能說的話</strong></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="speaker">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>講者重點</h2>
+            <p>這場演講最鮮明的觀點，不只是談理論，而是強調如何在真實生活裡陪孩子長出社會情緒能力。</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card speaker-card">
+            <div class="pill">觀點 01</div>
+            <h3>情緒一定要放回情境裡理解</h3>
+            <p>孩子在家穩定、到學校狀況變多，不代表退步，而是人、刺激、社交與壓力都變了。SEL 比只談 EQ 更完整，因為它把環境放回理解裡。</p>
+          </article>
+          <article class="card speaker-card">
+            <div class="pill">觀點 02</div>
+            <h3>自我覺察是所有能力的地基</h3>
+            <p>不知道自己怎麼了，就談不上管理情緒；看不清自己的狀態，也很難真正理解別人、維持關係或做出穩定選擇。</p>
+          </article>
+          <article class="card speaker-card">
+            <div class="pill">觀點 03</div>
+            <h3>大人先穩，孩子才有機會學</h3>
+            <p>孩子不是從說理中長大，而是從關係裡學會情緒。大人的說話方式、修復方式、本身就是孩子最常接觸到的教材。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="summary">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>更新版摘要</h2>
+            <p>以下內容依新版含時間戳 transcript 重新整理，補回更多講座中的案例、論證脈絡與細節。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card notes-card">
+            <h3>200 字中文摘要</h3>
+            <p>本場講座以 SEL（社會情緒學習）為核心，主張情緒從來不是孤立的個人能力問題，而是深受情境、關係與環境影響。講者指出，現代孩子與家長面對資訊爆量、社群媒體、高速聯絡與持續在線的生活型態，整體壓力比過去更高，也使 SEL 成為教育現場更重要的能力。其中最核心的基礎是「自我覺察」：唯有能看見自己的情緒、壓力、需求與價值，才談得上自我管理、理解他人、建立關係與做出負責任的決定。講者並強調，家長與老師真正重要的角色，不是急著糾正、安慰、貼標籤或只處理行為，而是在真實生活事件之後，先穩住自己，再陪孩子回頭整理經驗、看見內在狀態、理解情緒與行為的差別，並在關係中示範對話與修復。穩定的大人，就是孩子最重要的情緒環境。</p>
+          </article>
+          <article class="card notes-card">
+            <h3>主要論點與結論</h3>
+            <ul>
+              <li><strong>SEL 之所以比 EQ 更重要，是因為情緒一定嵌在情境裡：</strong> 孩子在家與在校表現不同，不一定是退步，而是所處的人際密度、刺激量與互動複雜度不同。</li>
+              <li><strong>現代社會的環境壓力，讓 SEL 更不能忽略：</strong> 手機、網路、社群媒體讓人幾乎沒有斷點，資訊量與互動速度都大幅增加，衝突也更容易外溢到線上。</li>
+              <li><strong>自我覺察是整個 SEL 的地基：</strong> 講者以走路、爬山、滑冰、滑雪等例子說明，當人把注意力拉回自己，才有能力開始整理內在狀態。</li>
+              <li><strong>大人本身就是孩子的教材：</strong> 孩子不是靠說理學情緒，而是從大人的語氣、表達方式、衝突處理與修復模式中吸收學會。</li>
+              <li><strong>情緒與行為必須分開看：</strong> 情緒本身沒有對錯；需要被規範的是行為。只處理打人、哭鬧、失控等表面行為，往往只是治標不治本。</li>
+              <li><strong>語言能力會直接影響情緒能力：</strong> 情緒詞彙、故事、繪本、對話與書寫，能幫孩子提升辨識與整理情緒的能力，也提高所謂的「情緒解析度」。</li>
+              <li><strong>教養的核心不是完美，而是修復：</strong> 大人難免失控，但若能停下來、說明、重來、修補關係，就仍然是在示範成熟的情緒能力。</li>
+            </ul>
+            <p style="margin-top:12px;"><strong>結論：</strong> SEL 的關鍵不是快速讓孩子停止情緒，而是讓大人在真實生活中成為穩定陪伴者，陪孩子在每一次哭鬧、衝突、挫折與選擇後，回頭看見自己、理解別人、修正行為，並逐步長出成熟的自我管理與關係能力。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>每 10 分鐘重點整理</h2>
+            <p>依新版 transcript 的時間戳重新整理，保留較多論述脈絡與案例，可作為較完整的回看導讀。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card list-card">
+            <h3>00:00–10:00</h3>
+            <p>開場先由主持人介紹講者與講座背景。講者從家長熟悉的 EQ、情緒教育談起，進一步提出「為什麼現在要談 SEL，而不只是談 EQ」。他認為關鍵差別在於：人的情緒不會脫離情境，孩子的情緒表現永遠與環境、人際密度與互動脈絡綁在一起。講者也以自己在園所中觀察孩子、反覆自問「他怎麼了、他在想什麼」為例，說明觀察與自問自答是理解社會情緒的起點。</p>
+          </article>
+          <article class="card list-card">
+            <h3>10:00–20:00</h3>
+            <p>這段主要說明為什麼當代教育環境必須重視 SEL。講者指出，手機、網路與社群媒體讓生活幾乎沒有斷點，資訊量更大、速度更快、壓力也更高。學校衝突不再只停留在現場，可能還沒放學就已經在 IG、Line 群組延燒。講者也以養狗經驗類比，指出連寵物社交都可能在社群上被放大，何況是親子與校園互動。最後帶到教育部近年推動 SEL 的背景，說明這不是新題目，而是在新環境下被重新凸顯的重要能力。</p>
+          </article>
+          <article class="card list-card">
+            <h3>20:00–30:00</h3>
+            <p>講者轉入自己的生命與工作經驗：過去在均一教育平台錄製大量教學影片，也曾赴美觀察 KIPP 等教育現場，並將這些觀察結合自身輔導工作，逐步形成對 SEL 的實踐觀點。接著，他分享自己帶學生長距離滑滑板、徒步環島、預備西班牙朝聖之路等經驗，說明這些活動並非只是挑戰體能，而是為了訓練「自我覺察」。他特別強調，只要走路時間夠長，人比較容易進入獨處、內在聚焦與回到自己身上的狀態，這正是覺察能力的基礎。</p>
+          </article>
+          <article class="card list-card">
+            <h3>30:00–40:00</h3>
+            <p>這段延伸談到更多用情境培養覺察的方法，例如爬山、滑冰、滑雪等。講者指出，當人處在怕跌倒、要平衡、必須全神貫注照顧身體的情境時，注意力自然回到自己身上，這是體驗「覺察」的有效方式。接著，他把主題拉回蒙特梭利提出的「預備好的成人」：孩子像海綿一樣吸收環境，而大人的存在就是環境的一部分。講者也透過案例提醒：孩子會自然吸收大人的情緒表達與說話方式，因此大人先成為穩定的人，比任何說理都更重要。</p>
+          </article>
+          <article class="card list-card">
+            <h3>40:00–50:00</h3>
+            <p>講者在這段先談「修復」的重要性，提醒家長即使過去做得不夠好，也永遠不會太晚，因為關係可以修復。之後開始說明情緒的基本特性：emotion 本身就帶有 action 的成分，表示情緒被觸動後，會推動人立刻做點什麼。正因如此，最重要的能力不是立刻反應，而是先停下來。講者接著說明情緒會有高峰與回落，因此時間是調節機制的一部分；不只是自己需要時間，孩子也需要時間。當孩子情緒正高時，急著介入、說理或安慰，通常都不容易有效。</p>
+          </article>
+          <article class="card list-card">
+            <h3>50:00–60:00</h3>
+            <p>這段聚焦於「情緒與行為的區分」。講者強調，情緒沒有好壞與對錯，真正有對錯的是行為；因此教育不能只停在指責「打人不對」，而要繼續追問：這個孩子為什麼打人？背後是什麼需求沒有被照顧？是挫折、失控、表達能力不足，還是累積已久的刺激？他提醒家長，理解一個孩子的心理狀態，不代表認同行為，而是為了真正處理根源。接著，他也指出大人常把安慰當作處理情緒的手段，但太快安慰，有時反而傳遞出「你不懂我」的訊息。</p>
+          </article>
+          <article class="card list-card">
+            <h3>60:00–70:00</h3>
+            <p>講者在這裡進一步引入近代情緒研究。首先，他指出表情與肢體語言不能完整代表內在狀態，不能只靠皺眉、哭或笑來判讀一個人的感受，並用學生誤以為媽媽皺眉就代表不滿意的例子，說明覺察需要更多脈絡與工具。其次，他強調人的情緒能力可以透過學習改變，不必灰心。最重要的是語言：情緒詞彙、概念與敘說能力會直接影響情緒能力。孩子若能慢慢學會說出自己的感受、寫下自己的心情，或透過繪本、故事建立情緒資料庫，將更有能力理解與調節自己。</p>
+          </article>
+          <article class="card list-card">
+            <h3>70:00–80:00</h3>
+            <p>這段講者以《腦筋急轉彎》為例談「情緒解析度」，也就是一個人能否細緻地看清自己內在狀態。解析度越高，通常調節能力越好。接著他介紹 CASEL 提出的 SEL 五大面向：自我覺察、自我管理、社會覺察、關係技巧與負責任的決定，但也提出自己在多年實務後的核心主張：自我覺察其實是整個系統的中心。因為如果連自己的情緒、壓力與狀態都搞不清楚，就談不上管理自己，更難看見別人、經營關係或做出成熟的選擇。</p>
+          </article>
+          <article class="card list-card">
+            <h3>80:00–90:00</h3>
+            <p>講者繼續把五大面向往下拆：自我覺察如何成為自我管理的基礎，因為你得先知道壓力從哪裡來，才可能調節自己；他也補充近年談自我管理常會提到 body budget，也就是睡眠、飲食、運動等身體預算對情緒的直接影響。接著他說明，自我覺察也是社會覺察與關係技巧的基礎，因為若連自己都掌握不好，就更難掌握他人。最後，他提醒覺察不會有「完成的一天」，因為人的狀態會一直變，所以 SEL 不是先把覺察練滿才開始，而是要在生活經驗裡持續練習。</p>
+          </article>
+          <article class="card list-card">
+            <h3>90:00–100:00</h3>
+            <p>這段是全場最具體的家長操作方法。講者指出，SEL 的核心不是教材，而是「經驗之後的覺察與反思」；孩子哭鬧、失控、挫折、衝突，其實正是最佳介入時機。前提是大人要先穩住自己，才能陪孩子整理。講者提醒，尤其對年幼孩子，覺察不一定靠提問，也可以透過大人分享自己的觀察，提供孩子參照，但不要太快下定論或貼標籤。最後，他用滑雪分組案例說明如何在具體事件後，協助孩子看見自己的核心議題：例如太在意跟朋友待在一起，反而忽略自身能力與對群體造成的影響。這樣的整理才是真正的 SEL 學習。</p>
+          </article>
+          <article class="card list-card">
+            <h3>100:00–106:00</h3>
+            <p>Q&amp;A 主要延伸到三個面向：第一，面對固執或很堅持的孩子，講者認為不能離開具體情境空談做法，而要看關係、權威、需求與現場條件如何調整；第二，他提醒家長其實本來就有權威，只是很多人不敢使用；第三，對於「被打的孩子要怎麼處理」，講者提出更細緻的觀點：陪伴被打的一方整理整個脈絡，不是檢討被害者，而是幫助孩子辨識風險、理解互動變化、學習保護自己。最後他再次重申，行為與內在狀態需要區分，理解情緒脈絡不等於認同行為，但對話若要深入，就不能只停留在表面是非。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="takeaways">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Key Takeaways</h2>
+            <p>如果只帶走幾件事，這五點最值得留下來。</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card takeaway-card">
+            <h3>1. 情緒沒有對錯</h3>
+            <p>生氣、失望、嫉妒、難過都不是錯；真正需要被引導的是表達方式與行為。</p>
+          </article>
+          <article class="card takeaway-card">
+            <h3>2. 行為背後一定有狀態</h3>
+            <p>只處理打人、哭鬧、衝撞等表面行為，通常不夠；更關鍵的是背後的挫折、需求或壓力。</p>
+          </article>
+          <article class="card takeaway-card">
+            <h3>3. 經驗後的反思才是學習</h3>
+            <p>SEL 真正發生在事件之後：孩子有沒有機會回看、命名、理解與整理自己。</p>
+          </article>
+          <article class="card takeaway-card">
+            <h3>4. 修復比完美更重要</h3>
+            <p>家長不必永遠不失控；更重要的是失控後願意回來修復關係，示範面對情緒的方式。</p>
+          </article>
+          <article class="card takeaway-card">
+            <h3>5. 好好說話就是教養</h3>
+            <p>孩子會記得你如何說話、如何衝突、如何收尾。語言本身就是情緒教育的一部分。</p>
+          </article>
+          <article class="card takeaway-card">
+            <h3>Bonus：先理解，再引導</h3>
+            <p>理解孩子的內在狀態，不代表認同行為；而是幫助孩子走向更成熟的下一步。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card highlight-strip">
+          <div>
+            <h3>一句話濃縮這場演講</h3>
+            <p>不是急著讓孩子停止情緒，而是在真實生活經驗中，陪他看見自己、理解自己、慢慢長出調節能力。</p>
+          </div>
+          <div class="quote-box">
+            成為穩定陪伴者，不是永遠不生氣，而是情緒來了以後，仍願意回來理解孩子，也理解自己。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notes">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>一頁式家長筆記</h2>
+            <p>適合快速複習與轉發的家長版濃縮整理。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card notes-card">
+            <h3>5 個核心觀念</h3>
+            <ol>
+              <li>情緒不是孩子自己的問題，而是受情境影響。</li>
+              <li>SEL 的核心不是技巧，而是自我覺察。</li>
+              <li>情緒沒有對錯，有對錯的是行為。</li>
+              <li>真正的學習，發生在經驗之後的整理。</li>
+              <li>大人本身就是孩子的情緒教材。</li>
+            </ol>
+          </article>
+          <article class="card notes-card">
+            <h3>家長最值得記住的做法</h3>
+            <ul>
+              <li>先停一下，先穩住自己，再介入。</li>
+              <li>不要只處理行為，也看背後狀態。</li>
+              <li>用觀察分享取代貼標籤。</li>
+              <li>幫孩子說出情緒，而不是急著壓掉。</li>
+              <li>失控後記得修復，不用追求完美。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="say">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>回家就能開始的 5 句話</h2>
+            <p>當孩子情緒上來時，比起講道理，先用這些句子打開對話。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card list-card">
+            <h3>可以直接用的句子</h3>
+            <ul>
+              <li>我先不急著處理，我想先懂你怎麼了。</li>
+              <li>你現在有情緒是可以的，但我們要一起找更好的做法。</li>
+              <li>我看到你剛剛真的很在意。</li>
+              <li>你覺得剛剛發生了什麼？</li>
+              <li>我們等一下冷靜一點，再一起想怎麼辦。</li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>家長最常踩的 5 個雷</h3>
+            <ul>
+              <li>一有情緒就急著講道理。</li>
+              <li>急著安慰，卻沒有真正理解。</li>
+              <li>只處理行為，不處理情緒。</li>
+              <li>用貼標籤代替對話。</li>
+              <li>要孩子穩定，但大人自己很爆。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      製作：SEL 社會情緒學習力家長筆記頁面 ・ 可部署至 GitHub Pages
+    </div>
+  </footer>
+</body>
+</html>
